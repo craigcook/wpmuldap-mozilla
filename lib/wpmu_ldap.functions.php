@@ -132,7 +132,7 @@ function wpmuLdapAuthenticate($ldapString, $loginUserName, $loginPassword) {
         // the trickle-through catch-all
         else {
         if (LDAP_DEBUG_MODE) echo "DEBUG: Attempting to authenticate user: unknown error (not user/password or security group based - something else is wrong<br/>";
-                $errors->add('unknown_error',__('<strong>ERROR</strong>: Unknown error in LDAP Authentication.'));
+                $errors->add('unknown_error',__('<strong>ERROR</strong>: Unknown error in LDAP Authentication. (' . $result . ')'));
                 return array('result' => false,'errors' => $errors);
         }
 }
@@ -178,7 +178,7 @@ function wpmuLdapProcess(&$loginObj, $loginUserName, $loginPassword, $userDataAr
 
     // At this point we must have a login object, but just in case something went wrong
     if (!$loginObj) {
-            return new WP_Error('unknown_error', __('<strong>ERROR</strong>: Unknown error in LDAP Authentication.'));
+            return new WP_Error('unknown_error', __('<strong>ERROR</strong>: Unknown error in LDAP Authentication object.'));
     }
 
     // Since the login was successful, lets set a meta object to know we are using ldap
