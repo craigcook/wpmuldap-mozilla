@@ -132,7 +132,7 @@ function wpmuLdapAuthenticate($ldapString, $loginUserName, $loginPassword) {
         // the trickle-through catch-all
         else {
         if (LDAP_DEBUG_MODE) echo "DEBUG: Attempting to authenticate user: unknown error (not user/password or security group based - something else is wrong<br/>";
-                $errors->add('unknown_error',__('<strong>ERROR</strong>: Unknown error in LDAP Authentication. (' . $result . ')'));
+                $errors->add('unknown_error',__('<strong>ERROR</strong>: Unknown error in LDAP Authentication. (' . $result . ') [' . $server->GetErrorText() . ']'));
                 return array('result' => false,'errors' => $errors);
         }
 }
