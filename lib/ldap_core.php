@@ -133,8 +133,12 @@ class LDAP {
         return $this->error_no;
     }
 
-    function GetErrorText() {
+    function GetErrorNumberText() {
         return ldap_err2str ($this->error_no);
+    }
+
+    function GetErrorText() {
+        return $this->error_txt;
     }
 
     function SetAccessDetails ($dn, $passwd) {
@@ -170,6 +174,7 @@ class LDAP {
 
     function LogError() {
         $this->error_no = @ldap_errno ($this->connection_handle);
+        $this->error_txt = @ldap_error ($this->connection_handle);
     }
 
     function GetLDAPInfo ($type) {
